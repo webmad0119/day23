@@ -1,0 +1,14 @@
+<form>
+  <h3>Please indicate the user details to be updated</h3>
+
+  <input type="text" name="name" placeholder="User name">
+  <input type="password" name="password" placeholder="Password">
+  <input type="text" name="nationality" placeholder="Your country">
+  <button id="update-user">Update User</button>
+</form>
+
+<script>
+  //here we extract the passed ID from res.render in the server side
+  var userId = "{{id}}"
+</script>
+<script src="../javascripts/update-user.js"></script>

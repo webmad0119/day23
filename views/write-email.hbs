@@ -1,0 +1,25 @@
+<form>
+  <input type="text" name="email" value="daniel.vicario@ironhack.com">
+  <input type="text" name="subject" placeholder="subject">
+  <textarea name="message" cols="30" rows="10" placeholder="message"></textarea>
+
+  <button id="send-email">Send email</button>
+</form>
+
+<script>
+  document.querySelector("#send-email").onclick = function (e) {
+    e.preventDefault()
+
+    let payload = {
+      "email": document.querySelector("input[name=email]").value,
+      "subject": document.querySelector("input[name=subject]").value,
+      "message": document.querySelector("textarea[name=message]").value
+    }
+
+    axios.post("/send-email", payload).then((confirmation) => {
+      console.log("mensaje enviado")
+    })
+  }
+
+
+</script>
