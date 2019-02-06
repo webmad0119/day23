@@ -1,0 +1,24 @@
+<form>
+  <h3>Please indicate the new user details</h3>
+
+  <input type="text" name="name" placeholder="User name">
+  <input type="password" name="password" placeholder="Password">
+  <input type="text" name="nationality" placeholder="Your country">
+  <button id="add-user">Create a new User</button>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script>
+  document.querySelector("#add-user").onclick = function (e) {
+    e.preventDefault();
+
+    let payload = {
+      name: document.querySelector("input[name=name]").value,
+      password: document.querySelector("input[name=password]").value,
+      nationality: document.querySelector("input[name=nationality]").value
+    }
+
+    axios.post("http://localhost:3000/users", payload).then(APIPayload => {
+      console.log(APIPayload)
+    })
+  }
+</script>
