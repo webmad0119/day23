@@ -1,28 +1,25 @@
 <style>
-  #users li {
+  #users li, div {
     border: 1px solid black;
   }
 </style>
 
 <ul id="users">
-  {{#each users}}
-  <li>
-    <p>User id: {{this._id}}</p>
-    <p>User name: {{this.name}}</p>
-    <p>User nationality: {{this.nationality}}</p>
-    <button data-id="{{this._id}}" class="delete-user">delete this user</button>
-  </li>
-  {{/each}}
+  
 </ul>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 <script>
-  document.querySelector(".delete-user").onclick = function (e) {
-    const userIdToBeDeleted = e.target.getAttribute("data-id")
-    const URL = `/users/${userIdToBeDeleted}`
 
-    axios.delete(URL).then(newUsers => {
-      location.href = "http://localhost:3000/list-users"
+  axios.get("http://localhost:3000/users/100").then((usersPayload) => {
+    let output4 = usersPayload.data.users.map((user) => {
+      const domEl = document.createElement("li")
+      domEl.innerHTML = user.name
+
+      return domEl
     })
-  }
 
+    output4.forEach((DOMEl) => {
+      document.querySelector("#users").appendChild(DOMEl)
+    })
+  })
 </script>
